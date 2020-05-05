@@ -1,38 +1,54 @@
-.App {
-  text-align: center;
+.site-title {
+  color: #49515d;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 1;
+  margin: 38px 0 0;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.site-title span {
+  color: #2eca7f;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+* {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  font-family: "Montserrat", Helvetica, sans-serif;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+body {
+  position: relative;
+  margin: 0;
+  height: 90vh;
+  background-color: #f5f5f5;
+  background-image: url(https://hades217.github.io/images/main_bg.png);
+  background-position: center center;
+  background-attachment: scroll;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.container {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  width: 1032px;
+  margin: auto;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
-.App-link {
-  color: #61dafb;
+.page-footer {
+  margin: 30px 0 20px;
+  text-align: center;
+  color: grey;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.page-footer span {
+  color: #2eca7f;
 }
