@@ -3,34 +3,116 @@ import "./style.css";
 import ShortHeader from "./shortheader";
 import BlockTitle from "./blocktitle";
 
- function ContactForm(){
-  return(
-    <div className="contactform__container">
-      <form id="contactform" className="contactform__form">
-        <div className="contactform_control">
-          <i className="fa fa-user"></i>
-          <label for="fullname">Full Name</label>
-          <input id="fullname" type="text"></input>
-          <div className="control__border"></div>
-        </div>
-        <div className="contactform_control">
-          <i className="fa fa-envelope"></i>
-          <label for="email">Email Address</label>
-          <input id="email" type="email"></input>
-          <div className="control__border"></div>
-        </div>
-        <div className="contactform_control">
-          <i className="fa fa-comment"></i>
-          <label for="message">Message for Me</label>
-          <textarea id="message" rows="4" required="required" data-error="Please leave me a message."></textarea>
-          <div className="control__border"></div>
-        </div>  
-        <div class="g-recaptcha" data-sitekey="your_site_key"></div>
-        <input type="submit" className="contactform__submitbtn" value="SUBMIT"></input>
-      </form>
-    </div>
-  );
+ class ContactForm extends React.Component {
+  constructor(props){
+    super(props);
+    this.state = {
+                  name:"",
+                  email:"",
+                  message:"",
+                  nameClassName:"contactform__control",
+                  emailClassName:"contactform__control",
+                  msgClassName:"contactform__control"
+                };
+  }
 
+   nameFocus = ()=>{
+    this.setState({nameClassName:"contactform__controlfocus"});
+   }
+   nameBlur = ()=>{
+     if(this.state.name === "")
+      this.setState({nameClassName:"contactform__control"});
+   }
+
+   emailFocus = ()=>{
+    this.setState({emailClassName:"contactform__controlfocus"});
+   }
+   emailBlur = ()=>{
+    if(this.state.email === "")
+      this.setState({emailClassName:"contactform__control"});
+   }
+
+   msgFocus = ()=>{
+    this.setState({msgClassName:"contactform__controlfocus"});
+   }
+   msgBlur = ()=>{
+    if(this.state.message === "")
+      this.setState({msgClassName:"contactform__control"});
+   }
+
+   getInput = (event)=> {
+    let name = event.target.name;
+    let value = event.target.value;
+    this.setState({[name]:value});
+  } 
+
+   onSubmit = (e)=>{
+    e.preventDefault();
+    let isReady = true;
+    if(this.state.name === ""){
+      this.setState({nameClassName:"contactform__control--error"});
+      isReady = false;
+    }
+    if(this.state.email === ""){
+      this.setState({emailClassName:"contactform__control--error"});
+      isReady = false;
+    }
+    if(this.state.message === ""){
+      this.setState({msgClassName:"contactform__control--error"});
+      isReady = false;
+    }
+
+    if(isReady)
+      alert("Ready to submit! name: "+this.state.name + 
+            " email: "+ this.state.email +
+            " message: " + this.state.message);
+
+   };
+  render(){
+    return(
+      <div className="contactform__container">
+        <form id="contactform" className="contactform__form">
+          <div className={this.state.nameClassName}>
+            <i className="fa fa-user"></i>
+            <label for="fullname">Full Name</label>
+            <input id="fullname" type="text" name="name"
+              onFocus={this.nameFocus}
+              onBlur={this.nameBlur}
+              onChange={this.getInput}>
+            </input>
+            <div className="control__border"></div>
+            <div className="control__help">Name is required.</div>
+          </div>
+          <div className={this.state.emailClassName}>
+            <i className="fa fa-envelope"></i>
+            <label for="email">Email Address</label>
+            <input id="email" type="email" name="email"
+              onFocus={this.emailFocus}
+              onBlur={this.emailBlur}
+              onChange={this.getInput}>
+            </input>
+            <div className="control__border"></div>
+            <div className="control__help">Valid email is required.</div>
+          </div>
+          <div className={this.state.msgClassName}>
+            <i className="fa fa-comment"></i>
+            <label for="message">Message for Me</label>
+            <textarea 
+              id="message" rows="4" name="message"
+              data-error="Please leave me a message." 
+              onFocus={this.msgFocus}
+              onBlur={this.msgBlur}
+              onChange={this.getInput}>
+            </textarea>
+            <div className="control__border"></div>
+            <div className="control__help">Please,leave me a message.</div>
+          </div>  
+          <div class="g-recaptcha" data-sitekey="your_site_key"></div>
+          <button type="submit" className="contactform__submitbtn" onClick={this.onSubmit}>SUBMIT</button>
+        </form>
+      </div>
+    );
+  }
 }
 
 function ContactInfoItem({icon,text}){
