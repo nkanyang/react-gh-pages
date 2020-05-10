@@ -477,7 +477,42 @@
   display: flex;
   flex-direction: column;
 }
-.contactform_control{
+
+.contactform__form i {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  font-size: 20px;
+}
+
+.contactform__form input {
+  margin-left: 40px;
+  border: none;
+  width: 80%;
+  background: none;
+  font-size: 16px;
+  outline: none;
+}
+.contactform__form input:focus {
+  border: none;
+}
+.contactform__form textarea {
+  margin-left: 40px;
+  border: none;
+  width: 80%;
+  background: none;
+  font-size: 16px;
+  outline: none;
+}
+.contactform__form textarea:focus {
+  border: none;
+}
+
+/*state:usual focus error*/
+.contactform__control, 
+.contactform__controlfocus,
+.contactform__control--error,
+.contactform__controlfocus--error{
   width: 100%;
   min-height: 42px;
   line-height: 1.42857143;
@@ -485,55 +520,108 @@
   position: relative;
   color:rgb(196, 192, 192);
   margin-bottom: 20px;
+  transition: all 0.3s ease-in-out;
 }
 
-.contactform_control i {
-  position: absolute;
-  width: 40px;
-  height: 40px;
-  font-size: 20px;
-}
-.contactform_control label {
+/* label */
+.contactform__control label,
+.contactform__control--error label{
   position: absolute;
   left: 40px;
   top: -5px;
   font-size: 20px;
+  transition: 0.3s ease;
 }
-.contactform_control input {
-  margin-left: 40px;
-  border: none;
-  width: 80%;
-  background: none;
+.contactform__controlfocus label,
+.contactform__controlfocus--error label {
+  position: absolute;
+  left: 40px;
+  top: -20px;
   font-size: 16px;
+  transition: 0.3s ease;
 }
-.contactform_control input:focus {
-  border: none;
-}
-.contactform_control textarea {
-  margin-left: 40px;
-  border: none;
-  width: 80%;
-  background: none;
-  font-size: 16px;
-}
-.contactform_control textarea:focus {
-  border: none;
-}
-.contactform_control .control__border {
+/* border */
+.contactform__control .control__border,
+.contactform__control-error .control__border,
+.contactform__controlfocus .control__border,
+.contactform__controlfocus--error .control__border {
   width: 90%;
   content: "";
   position: absolute;
   z-index: -1;
   left:-5px;
   bottom: 3px;
-  background: rgb(196, 192, 192);;
+  background: rgb(196, 192, 192);
   height: 2px;
+  transition: 0.3s ease;
+}
+.contactform__controlfocus .control__border {
+  width: 90%;
+  content: "";
+  position: absolute;
+  z-index: -1;
+  left:-5px;
+  bottom: 3px;
+  height: 2px;
+  transition: 0.3s ease;
+  background-color: #2eca7f;
+}
+.contactform__control--error .control__border {
+  width: 90%;
+  content: "";
+  position: absolute;
+  z-index: -1;
+  left:-5px;
+  bottom: 3px;
+  height: 2px;
+  transition: 0.3s ease;
+  background-color: red;
+}
+
+/* help block */
+.contactform__control .control__help, 
+.contactform__controlfocus .control__help {
+  display: none;
+}
+
+/* .contactform__control .control__help::after,
+.contactform__controlfocus .control__help::after{
+  display: none;
+} */
+
+.contactform__control--error .control__help {
+  font-size: 12px;
+  color: red;
+  position: absolute;
+  background-color: rgb(226, 225, 225);
+  border: none;
+  left: 40px;
+  bottom: -10px;
+  padding: 2px;
+  border-radius: 2px;
+  display: block;
+}
+
+.contactform__control--error .control__help::after,
+.contactform__controlfocus--error .control__help::after {
+  content: '';
+	position: absolute;
+	top: 0;
+	left: 10%;
+	width: 0;
+	height: 0;
+	border: 10px solid transparent;
+	border-bottom-color: rgb(226, 225, 225);
+	border-top: 0;
+	border-left: 0;
+	margin-left: -5px;
+  margin-top: -10px;
+  display: block;
 }
 
 
 .contactform__submitbtn {
   margin-top: 20px;
-
   width: 140px;
   height: 50px;
   padding: 20px;

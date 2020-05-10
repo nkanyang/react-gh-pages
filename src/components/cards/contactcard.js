@@ -44,6 +44,10 @@ import BlockTitle from "./blocktitle";
     let name = event.target.name;
     let value = event.target.value;
     this.setState({[name]:value});
+     if(name === "name"){
+      console.log("input is :" + value);
+    //   console.log("state is :" + this.state.name);
+    }
   } 
 
    onSubmit = (e)=>{
